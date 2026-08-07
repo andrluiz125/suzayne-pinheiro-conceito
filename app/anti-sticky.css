@@ -1,0 +1,19 @@
+/* Ajuste editorial da seção "O que eu não faço".
+   Mantém o título visível durante a leitura da lista no desktop,
+   seguindo a mesma lógica da seção de perguntas frequentes. */
+.anti-section {
+  overflow: visible;
+}
+
+.anti-grid {
+  align-items: start;
+}
+
+@media (min-width: 801px) {
+  .anti-title {
+    position: sticky;
+    top: 110px;
+    align-self: start;
+    height: fit-content;
+  }
+}
