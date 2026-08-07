@@ -116,11 +116,34 @@ export default function Home() {
   const [showFloat, setShowFloat] = useState(false);
 
   useEffect(() => {
-    const reveal = new IntersectionObserver((entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")), { threshold: 0.12 });
-    document.querySelectorAll(".reveal").forEach((el) => reveal.observe(el));
+    const root = document.documentElement;
+    root.classList.add("motion-ready");
+
+    const reveal = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        reveal.unobserve(entry.target);
+      });
+    }, { threshold: 0.08, rootMargin: "0px 0px -7% 0px" });
+
+    const revealElements = Array.from(document.querySelectorAll<HTMLElement>(".reveal"));
+    revealElements.forEach((element) => {
+      const siblings = element.parentElement
+        ? Array.from(element.parentElement.children).filter((child) => child.classList.contains("reveal"))
+        : [];
+      const siblingIndex = Math.max(0, siblings.indexOf(element));
+      element.style.setProperty("--reveal-delay", `${Math.min(siblingIndex * 85, 255)}ms`);
+      reveal.observe(element);
+    });
+
     const onScroll = () => { setScrolled(window.scrollY > 80); setShowFloat(window.scrollY > document.documentElement.scrollHeight * .4); };
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => { reveal.disconnect(); window.removeEventListener("scroll", onScroll); };
+    return () => {
+      reveal.disconnect();
+      root.classList.remove("motion-ready");
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   const goToDiagnostic = () => { document.querySelector("#diagnostico")?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
