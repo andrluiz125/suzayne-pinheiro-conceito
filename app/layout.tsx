@@ -6,9 +6,26 @@ const display = Cormorant_Garamond({ variable: "--font-display", subsets: ["lati
 const sans = Manrope({ variable: "--font-sans", subsets: ["latin"], weight: ["400", "500", "600", "700"] });
 
 export const metadata: Metadata = {
-  title: "Suzayne Pinheiro | Consultoria em Planos de Saúde",
-  description: "Comparativo de planos, rede credenciada da sua região e cenários de custo a longo prazo. Comece pelo diagnóstico gratuito.",
-  other: { "codex-preview": "development" },
+  metadataBase: new URL("https://suzayne-pinheiro-conceito.vercel.app"),
+  title: "Suzayne Pinheiro | Plano de Saúde em São Paulo",
+  description: "Compare planos de saúde em São Paulo, rede credenciada e custos de longo prazo com orientação clara. Comece pelo diagnóstico gratuito.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: "Suzayne Pinheiro | Plano de Saúde em São Paulo",
+    description: "Compare planos, rede credenciada e custos de longo prazo com orientação clara e personalizada.",
+    url: "/",
+    siteName: "Suzayne Pinheiro",
+    locale: "pt_BR",
+    type: "website",
+    images: [{ url: "/og-suzayne.jpg", width: 1200, height: 630, alt: "Suzayne Pinheiro — planos de saúde em São Paulo" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Suzayne Pinheiro | Plano de Saúde em São Paulo",
+    description: "Compare planos, rede credenciada e custos de longo prazo com orientação clara e personalizada.",
+    images: ["/og-suzayne.jpg"],
+  },
+  icons: { icon: "/favicon.svg" },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

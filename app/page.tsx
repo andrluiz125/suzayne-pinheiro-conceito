@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
 
 const painPoints = [
@@ -149,7 +150,9 @@ export default function Home() {
   const goToDiagnostic = () => { document.querySelector("#diagnostico")?.scrollIntoView({ behavior: "smooth" }); setMenuOpen(false); };
 
   return (
-    <main>
+    <>
+      <a className="skip-link" href="#conteudo">Pular para o conteúdo</a>
+      <main id="conteudo">
       <header className={`site-header ${scrolled ? "scrolled" : ""}`}>
         <a className="brand" href="#top" aria-label="Suzayne Pinheiro — início"><span className="brand-mark">SP</span><span><b>Suzayne Pinheiro</b><small>Planos de saúde</small></span></a>
         <nav className={menuOpen ? "nav open" : "nav"} aria-label="Navegação principal">
@@ -160,9 +163,9 @@ export default function Home() {
       </header>
 
       <section className="hero" id="top">
-        <div className="hero-image" aria-hidden="true" /><div className="hero-vignette" aria-hidden="true" /><div className="hero-grain" aria-hidden="true" />
+        <div className="hero-image"><Image src="/hero-suzayne-real.webp" alt="Suzayne Pinheiro, consultora de planos de saúde" fill priority sizes="100vw" quality={82} unoptimized /></div><div className="hero-vignette" aria-hidden="true" /><div className="hero-grain" aria-hidden="true" />
         <div className="hero-content">
-          <p className="eyebrow"><span /> Consultoria comparativa em saúde</p>
+          <p className="eyebrow"><span /> Plano de Saúde em São Paulo</p>
           <h1>Entre tantas opções,<br /><em>poucas servem</em> pra você.</h1>
           <p className="hero-copy">Meu trabalho é encontrar essas poucas — e te dizer, com clareza, por que as outras ficaram de fora.</p>
           <div className="hero-actions"><button className="button button-light" onClick={goToDiagnostic}>Fazer meu diagnóstico <span>↗</span></button><a className="text-link" href="#contato">Prefiro falar direto <span>→</span></a></div>
@@ -204,7 +207,7 @@ export default function Home() {
         <button className="button button-dark center-button" onClick={goToDiagnostic}>Descobrir o meu caso <span>↗</span></button></div>
       </section>
 
-      <section className="about-section" id="sobre"><div className="section-shell about-grid"><div className="portrait-suzayne reveal" role="img" aria-label="Suzayne Pinheiro em atendimento consultivo"><span>Foto provisória criada a partir da referência enviada</span></div><div className="about-copy reveal"><p className="section-index light">07 — Suzayne Pinheiro</p><h2>Plano de saúde é contrato.<br /><em>Mas também é cuidado.</em></h2><p>Meu trabalho começa entendendo onde você quer ser atendido, quem precisa estar protegido e o que não pode ficar de fora. Só depois eu comparo as modalidades e reduzo as opções ao que realmente merece sua atenção.</p><p>Você recebe os motivos da recomendação, os pontos de atenção e o que foi descartado — para escolher com segurança, sem depender de promessa verbal.</p><blockquote>“A melhor escolha não é a que parece mais barata hoje. É a que continua fazendo sentido quando você precisa usar.”</blockquote><div className="credentials"><span>Corretagem multimarcas</span><span>Registro SUSEP a inserir</span><span>Atendimento personalizado</span></div></div></div></section>
+      <section className="about-section" id="sobre"><div className="section-shell about-grid"><div className="portrait-suzayne reveal"><Image src="/hero-suzayne-real.webp" alt="Suzayne Pinheiro em atendimento consultivo" fill sizes="(max-width: 800px) 88vw, 36vw" quality={82} unoptimized /><span>Foto provisória criada a partir da referência enviada</span></div><div className="about-copy reveal"><p className="section-index light">07 — Suzayne Pinheiro</p><h2>Plano de saúde é contrato.<br /><em>Mas também é cuidado.</em></h2><p>Meu trabalho começa entendendo onde você quer ser atendido, quem precisa estar protegido e o que não pode ficar de fora. Só depois eu comparo as modalidades e reduzo as opções ao que realmente merece sua atenção.</p><p>Você recebe os motivos da recomendação, os pontos de atenção e o que foi descartado — para escolher com segurança, sem depender de promessa verbal.</p><blockquote>“A melhor escolha não é a que parece mais barata hoje. É a que continua fazendo sentido quando você precisa usar.”</blockquote><div className="credentials"><span>Corretagem multimarcas</span><span>Registro SUSEP a inserir</span><span>Atendimento personalizado</span></div></div></div></section>
 
       <section className="anti-section"><div className="section-shell anti-grid"><div className="reveal"><p className="section-index">08 — Transparência</p><h2>O que eu<br /><em>não faço.</em></h2></div><div className="anti-list reveal"><article><span>01</span><div><h3>Não empurro um catálogo.</h3><p>Reduzo a comparação ao que realmente faz sentido para o seu perfil.</p></div></article><article><span>02</span><div><h3>Não prometo rede sem documento.</h3><p>Hospital e laboratório precisam constar na proposta vigente.</p></div></article><article><span>03</span><div><h3>Não escondo o lado ruim.</h3><p>Todo plano deixa algo de fora. Você precisa saber antes de assinar.</p></div></article><article><span>04</span><div><h3>Não vendo se você já está bem servido.</h3><p>Se o seu plano atual for a melhor escolha, a análise termina ali.</p></div></article></div></div></section>
 
@@ -215,6 +218,7 @@ export default function Home() {
       <footer><div className="footer-main"><a className="brand footer-brand" href="#top"><span className="brand-mark">SP</span><span><b>Suzayne Pinheiro</b><small>Planos de saúde</small></span></a><div><small>Navegação</small><a href="#diagnostico">Diagnóstico</a><a href="#entrega">O que você recebe</a><a href="#acompanhamento">Pós-venda</a><a href="#sobre">Quem sou eu</a></div><div><small>Guias futuros</small><span>Carência e portabilidade</span><span>Reajuste do plano</span><span>Plano para MEI e PME</span><span>Negativa de cobertura</span></div><div><small>Dados para publicação</small><span>WhatsApp a inserir</span><span>E-mail a inserir</span><span>SUSEP a inserir</span><span>CNPJ a inserir</span></div></div><div className="footer-legal"><p>Informações de preços, redes e coberturas dependem das propostas e contratos vigentes das operadoras. Este modelo não substitui revisão jurídica especializada.</p><span>© 2026 Suzayne Pinheiro</span></div></footer>
 
       <button className={`floating-contact ${showFloat ? "visible" : ""}`} onClick={() => document.querySelector("#contato")?.scrollIntoView({ behavior: "smooth" })}><span>✦</span> Tirar uma dúvida</button>
-    </main>
+      </main>
+    </>
   );
 }
