@@ -160,6 +160,7 @@ h1 em,h2 em { font-weight:500; color:#dec79e; }
 .credentials span { border:1px solid rgba(255,255,255,.2); padding:11px 14px; text-transform:uppercase; letter-spacing:.11em; font-size:8px; color:rgba(255,255,255,.65); }
 .anti-section { padding:150px 0; background:var(--cream); }
 .anti-grid { display:grid; grid-template-columns:.75fr 1.25fr; gap:10vw; }
+.anti-title { position:sticky; top:110px; align-self:start; }
 .anti-list { border-top:1px solid var(--line); }
 .anti-list article { display:grid; grid-template-columns:50px 1fr; gap:22px; padding:30px 0; border-bottom:1px solid var(--line); }
 .anti-list article>span { font-family:var(--font-display); color:#9d8056; }
@@ -253,7 +254,7 @@ footer { background:#041512; color:white; padding:80px 5vw 25px; }
   .modalities-table .attention { padding:15px 0 0; border-left:0; border-top:1px solid var(--line); }
   .portrait-suzayne { min-height:520px; }
   .portrait-suzayne img { object-position:70% center; }
-  .faq-title { position:static; }
+  .anti-title,.faq-title { position:static; }
   .final-content>div { flex-direction:column; }
   .footer-main { grid-template-columns:1fr 1fr; }
   .footer-brand { grid-column:1/-1; margin-bottom:20px; }

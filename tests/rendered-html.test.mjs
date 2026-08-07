@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
+const productionDescription =
+  /<meta(?=[^>]*\bname=["']description["'])(?=[^>]*\bcontent=["']Compare planos de saúde em São Paulo[^"']*["'])[^>]*>/i;
+const productionCanonical =
+  /<link(?=[^>]*\brel=["']canonical["'])(?=[^>]*\bhref=["']https:\/\/suzayne-pinheiro-conceito\.vercel\.app\/["'])[^>]*>/i;
 
-test("renders development preview metadata", async () => {
+test("renders production SEO metadata", async () => {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
   workerUrl.searchParams.set("test", `${process.pid}-${Date.now()}`);
   const { default: worker } = await import(workerUrl.href);
@@ -29,5 +31,8 @@ test("renders development preview metadata", async () => {
     response.headers.get("content-type") ?? "",
     /^text\/html\b/i,
   );
-  assert.match(await response.text(), developmentPreviewMeta);
+  const html = await response.text();
+  assert.match(html, /<title>Suzayne Pinheiro \| Plano de Saúde em São Paulo<\/title>/i);
+  assert.match(html, productionDescription);
+  assert.match(html, productionCanonical);
 });
